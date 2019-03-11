@@ -1,0 +1,16 @@
+.product-box{
+    
+    margin: auto;
+    width: 25%;
+    border-radius: 10px;
+    display: block;
+    box-shadow: 10px 10px 54px 10px rgba(0,0,0,0.75);
+
+}
+
+.product-box >div> img{
+
+width: 100%;
+border-radius: 10px;
+
+}

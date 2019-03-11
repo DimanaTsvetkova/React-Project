@@ -1,0 +1,75 @@
+.logo{
+    width: 15%;
+    /* margin: 1% 5% 0; */
+    margin: 1% 0% 0 20%;
+}
+
+
+ /* .logo:hover{
+     width: 11em;
+     transition: width 0.5s ;
+ } */
+ .logo > img{
+    width: 100%;
+}
+.shopping-basket{
+    width: 5%;
+    position: fixed;
+    padding: 3% 0% 0 5%;
+}
+ 
+ header{
+    width: auto;
+    height: auto;
+    text-align: center;
+     
+ }
+ nav{
+    min-width: -webkit-fill-available;
+    display: inline-flex;
+ 
+ }
+ nav>div{
+    display: inline-flex;
+    padding: 3% 0% 0;
+    margin: 0 9% 0;
+    width: 13%;
+ }
+ 
+.a{
+    font-weight: bold;
+    font-size: 210%;
+    margin: 0 30%;
+     text-decoration: none;
+     color: black;
+ }
+ .a:hover{
+     cursor: pointer;
+    border-bottom: 3px solid black;
+ 
+ }
+
+  .user-nav-div{
+    width: 40%;
+}
+.user-nav-div:hover{
+    cursor: pointer
+}
+.user-nav-span{
+    text-decoration: none;
+    color: black;
+    
+}
+#root > div > header > nav > div:nth-child(4) > div > a > img{
+    height: 58%;
+    width: 100%;
+    border-radius: 40px;
+}
+
+.basket{
+    width: 30%;
+    padding: 1em;
+}
+.anonymous-nav-div{
+    margin: 0 0% 0 25%;
+}

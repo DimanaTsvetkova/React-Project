@@ -1,0 +1,103 @@
+main{
+    height: 100vh;
+    background: url('../../pics/create-form.jpg') fixed no-repeat;
+    background-size: cover;
+  }
+
+.create-product{
+  width: 40%;
+  height: 47%;
+  background: inherit;
+  position: absolute;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  margin-top: -10%;
+  border-radius: 55px;
+}
+.create-product:before{
+  width: 110%;
+  height: 110%;
+  content: "";
+  position: absolute;
+  right: 0;
+  background: inherit;
+  box-shadow: inset 0 0 0 200px rgba(255,255,255,0.2);
+  filter: blur(15px);
+}
+form{
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  color: white;
+  transform: translate(-50%,-50%);
+  }
+
+  input, select, textarea{
+    resize: none;
+    overflow: auto;
+    background: transparent;
+    width: 200px;
+    outline: 0;
+    border: 0;
+    border-bottom: 2px solid rgba(255,255,255, 0.3);
+    margin: 20px 0;
+    padding-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 0;
+    color:white;
+    text-align: center;
+  }
+  .product-btn{
+    border: 0;
+    border-radius: 8px;
+    padding-bottom: 0;
+    height: 60px;
+    background: green;
+    color: white;
+    cursor: pointer;
+    transition: all 450ms ease-in-out;
+    margin: 0 27%;
+  }
+  .product-btn:hover{
+    text-shadow: 5px 2px 9px #000000;
+    background: #C0392B;
+    padding-bottom: 1%;
+  }
+  ::placeholder{
+    color: white;
+    font-weight: bold
+}
+
+select{
+  cursor: pointer;
+  padding: 0% 20% 12%;
+}
+option{
+    background: black;
+    font-weight: bold;
+}
+textarea::-webkit-scrollbar{
+  background-color: transparent;
+  width: 2%;
+}
+textarea{
+  margin: 0 53%;
+  width: 100%;
+}
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.inputs{
+  display: flex;
+
+}
+.inputs>div{
+  margin: 0 3% 0 0;
+}
+#container > form > div > div:nth-child(2) > input[type="number"]:nth-child(3){
+  margin: 3% 0;
+}
