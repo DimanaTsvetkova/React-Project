@@ -1,0 +1,136 @@
+.user-background{
+    font-family: cursive;
+    background: url('../../pics/grey-background.jpg')no-repeat;
+    background-size: cover;
+}
+.user-creds{
+    width: 100%;
+    padding-bottom: 1em;
+    text-align: center;
+    text-shadow: 5px 2px 9px #000000;
+    padding-bottom: 1em;
+    border-bottom: 4px solid;
+    margin-bottom: 1em;
+  }
+  .user-creds>h3{
+    font-size: 2em;
+  }
+  .user-profile-img{
+    margin: 7% 0 0;
+    height: 19em;
+    width: 50%;
+    border-radius: 50%;
+    padding: 1%;
+    background: black;
+    box-shadow: 19px 24px 57px 0px rgba(10,10,10,1);
+  
+  }
+  
+  .user-creds>div{
+    width: 50%;
+    margin: auto;
+  
+    text-align: center;
+  }
+  
+  
+  .user-background ul{
+    text-align: center
+  }
+  
+  .li-img{
+    max-width: 30%;
+    display: inline-block;
+    width: 30%;
+  }
+  .li-img>img{
+    max-width: 100%;
+  }
+  
+  
+  .user-background li{
+    display:inline-flex;
+    margin: 2% auto;
+    width: 90%;
+    list-style-type: none;
+  }
+
+  .order-details{
+    display: inline-block;
+    width: 60%
+  
+  }
+  .order-details>h2{
+    margin: 0;
+  }
+  .order-status{
+    display: inline-block;
+  }
+  .user-background button{
+    border: 0;
+    border-radius: 12px;
+    background: green;
+    cursor: pointer;
+    transition: all 450ms ease-in-out;
+    margin: 30% 0% 0 0;
+    font-size: 1em;
+    padding: .5em;
+    
+  }
+  .user-background button:hover{
+    box-shadow: none;
+    text-shadow: none;
+  
+    background: green;
+  }
+  
+  
+  .user-all{
+    display: inline-flex;
+    padding: 0 0 1em 2em;
+  }
+  .user-all>section{
+    text-align: center;
+    background: white;
+    margin: 0 5%;
+    border-radius: 1em;
+    height: fit-content;
+    box-shadow: 10px 10px 177px 12px rgba(0,0,0,0.75);
+  
+  }
+  .recieved-orders img{
+    max-width: 100%;
+    max-height: 8em;
+  }
+  .recieved-order-details>li{
+    width: 70%;
+    text-align: justify;
+  }
+  .recieved-order-details{
+    display: inline-flex;
+    margin: 5% 0 0 0;
+  }
+  .recieved-order-details>button{
+    height: 3em;
+    margin: 0 0 0 2em
+  }
+  .recieved-orders-section{
+    width: 70%
+  }
+  .recieved-orders-section ul{
+    padding: 0 2%;
+  }
+  .recieved-order-details div{
+    padding: 0 2%;
+  } 
+   h2{
+    margin: 0;
+  }
+  
+  .price{
+    font-weight: normal;
+    font-size: 15px;
+  }
+  .my-products-section{
+    width: 40%;
+  }

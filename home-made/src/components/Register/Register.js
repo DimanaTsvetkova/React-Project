@@ -24,7 +24,7 @@ class Register extends Component {
           <input className="login" onChange={this.setCreditentials} type="text" name="fullName" placeholder="Name" />
             <input className="login" type="text" onChange={this.setCreditentials} name="imageUrl" placeholder="Profile Picture URL"/>
           <input className="login" onChange={this.setCreditentials} type="password" name="password" placeholder="******" />
-          <input className="login-btn" type="submit" value="REGISTER" />
+          <input className="login-btn" type="submit" value="Register" />
         </form>
 
       </div>

@@ -2,6 +2,8 @@
     height: 100vh;
     background: url('../../pics/login-register-background.jpg')fixed no-repeat ;
     background-size: cover;
+    font-family: cursive;
+
   }
   .container{
     width: 35%;
@@ -45,17 +47,19 @@
     padding-bottom: 10px;
     font-size: 18px;
     font-weight: bold;
+
   }
   .login-btn{
     border: 0;
     border-radius: 8px;
     padding-bottom: 0;
     height: 60px;
+    font-family: cursive;
     background: green;
     color: white;
     cursor: pointer;
     transition: all 450ms ease-in-out;
-    margin: 10%;
+    margin: 10% 0;
     box-shadow: 10px 10px 39px -1px rgba(0,0,0,0.75);
   }
   .login-btn:hover{
@@ -63,10 +67,12 @@
     box-shadow: none;
 
   }
+  .login::placeholder{
+    color:#fff; 
+    font-family: cursive;
+  }
   ::placeholder{
-      color: white;
       font-weight: bold;
-      text-shadow: 5px 2px 9px #000000;
   }
  
  

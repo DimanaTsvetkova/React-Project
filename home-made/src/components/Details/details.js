@@ -1,4 +1,5 @@
 import React from 'react';
+import './details.css';
 
 class Details extends React.Component{
     constructor(props){
@@ -85,19 +86,24 @@ class Details extends React.Component{
     render(){
         let {product} = this.state
     return(
-        <React.Fragment>
-        <div>
+        <main className="shop-page">
+        <div>   
+            <section className="img-section">
                     <img src={product.imageUrl} alt="pic" />
-                    </div>
-                <div>
-                    <h2>{this.props.match.params.productId}</h2>
+                    </section>
+            <div className="order-det">
+            <input type="number" placeholder="Quantity:" name="quantity" className="quantity-inp" onChange={(e)=>this.setPriceAndQuantity(e)}/>
+            
+                    <h3>Final price: {this.state.price} $</h3>
+                    <button className="order-btn" onClick={()=>this.placeOrder(this.state)}>Order</button>
+            </div>
+                <section className="details-section">
                      <h3>{product.name}</h3>
+                Details
                     <p>{product.details}</p>
-                    <h5>{this.state.price}$</h5>
-                    <input type="number" onChange={(e)=>this.setPriceAndQuantity(e)}/>
-                    <button onClick={()=>this.placeOrder(this.state)}>Buy</button>
+                </section>
                 </div>
-                </React.Fragment>
+                </main>
     )}
 }
 

@@ -1,7 +1,7 @@
-main{
-    height: 100vh;
+.create-pr-main{
     background: url('../../pics/create-form.jpg') fixed no-repeat;
     background-size: cover;
+    height: -webkit-fill-available;
   }
 
 .create-product{
@@ -67,7 +67,7 @@ form{
     padding-bottom: 1%;
   }
   ::placeholder{
-    color: white;
+    /* color: white; */
     font-weight: bold
 }
 

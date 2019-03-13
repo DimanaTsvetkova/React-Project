@@ -16,13 +16,13 @@ class CreateProduct extends Component {
   }
   render() {
     return (
-      <main>
+      <main className="create-pr-main">
       <div className="create-product">
         <form onSubmit={(e)=>
          this.props.createProduct(e, this.state)}>
          <div className="inputs">
          <div>
-          <input onChange={this.setCreditentials} type="text" name="name" placeholder="Name" />
+          <input onChange={this.setCreditentials} type="text" name="name" required placeholder="Name" />
           <select onChange={this.setCreditentials} type="text" name="type" placeholder="Type" >
           <option value="Vegetables">Vegetables</option>
           <option value="Fruits">Fruits</option>
@@ -34,7 +34,7 @@ class CreateProduct extends Component {
             <div>
             <input type="text" onChange={this.setCreditentials} name="imageUrl" placeholder="Picture URL"/>
 
-          <input onChange={this.setCreditentials} type="number" name="price" placeholder="Price" />
+          <input onChange={this.setCreditentials} type="text" pattern="^\d*(\.\d{0,2})?$" required name="price" placeholder="Price" />
           </div>
           </div>
           <input type="submit" className="product-btn" value="Post product" />

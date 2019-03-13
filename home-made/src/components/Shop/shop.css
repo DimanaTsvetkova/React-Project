@@ -1,16 +1,72 @@
-.product-box{
-    
+html, body {margin: 0; height: 100%; overflow:auto}
+
+.shop-page{
+    background: url('../../pics/shop-background.jpg');
+    text-align: center;
+    display: inline-block;
+    width: -webkit-fill-available;
+  
+  }
+  .shop-page>h2{
+    font-size: 3em;
+    color: white;
+    text-shadow: 5px 4px 10px #000000;
+  }
+  .product-box{
+   background: #ffffff;
+    display: inline-flex;
+    margin: 2% 4%;
+    width: 35%;
+    border-radius: 25px;
+    box-shadow: 19px 24px 57px 0px rgba(10,10,10,1);
+    HEIGHT: 14EM;
+  
+  }
+  .pr-price{
+    float: left;
+    font-family: serif;
+    font-size: 1em;
+    margin: 0;
+    padding: 3%;
+    border-radius: 93px;
+  }
+  .product-box>section{
     margin: auto;
-    width: 25%;
-    border-radius: 10px;
-    display: block;
-    box-shadow: 10px 10px 54px 10px rgba(0,0,0,0.75);
-
-}
-
-.product-box >div> img{
-
-width: 100%;
-border-radius: 10px;
-
-}
+    width: 90%;
+    padding: 0 1% 0 0;
+  }
+  .product-box>section>h3{
+    font-size: 221%;
+      margin: 1%;
+  }
+  .buy-btn{
+    width: 20%;
+      text-decoration: none;
+    font-weight: bold;
+    border: 0;
+    border-radius: 8px;
+    padding-bottom: 0;
+    background: green;
+    color: white;
+    cursor: pointer;
+    transition: all 450ms ease-in-out;
+    padding: 3% 8%;
+    font-size: 1.1em;
+    float: right;
+    margin: 0 8% 0% 0%;
+   
+  }
+  .buy-btn:hover{
+    background: #C0392B;
+  }
+  
+  body > main > div > section:nth-child(1){
+    width: 70%
+  }
+  main > div > section:nth-child(1)>img{
+    min-width: 50%;
+    max-width: 100%;
+    display: inherit;
+    border-radius: 25px;
+    margin: auto;
+  }
