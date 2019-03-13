@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Redirect} from 'react-router';
 import './login.css';
 
 class Register extends Component {
@@ -11,7 +12,13 @@ class Register extends Component {
     this.setCreditentials = props.setCreditentials.bind(this);
   } 
   render() {
+    if(localStorage.getItem('isLogged')){
+      return <Redirect to="/shop/products"/>
+    }
+    console.log(this.props)
     return (
+       
+      
       <main className="cred-form">
       <div className="container">
         <form onSubmit={(e)=>

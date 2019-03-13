@@ -10,14 +10,15 @@ import Shop from '../Shop/Shop';
 import Details from '../Details/details';
 import MyOrders from '../my-orders/myOrders';
 import UserProfile from '../user-profile/UserProfile';
+import Delete from '../Details/delete';
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       user: "",
-      isAdmin: false,
-      products:[],
-      orders:[]
+      products: [],
+      orders: [],
     }
     this.onSubmit = this.onSubmit.bind(this);
 
@@ -34,120 +35,63 @@ class App extends Component {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(data)
-    } ).then(res => res.json())
+    }).then(res => res.json())
       .then(data => {
         console.log(data)
 
         if (!data.userId) {
           console.error("Wrong username or password");
         } else {
+
           console.log(`Welcome ${data.name}`)
           localStorage.setItem('imageUrl', data.imageUrl);
-          localStorage.setItem('userId', data.userId)
-          localStorage.setItem('name', data.name)
+          localStorage.setItem('userId', data.userId);
+          localStorage.setItem('name', data.name);
 
           this.setState({
             user: data.name,
           })
+          localStorage.setItem('isLogged', true)
           if (data.name === "Admin") {
-            this.setState({
-              isAdmin: true
-            })
-          } else {
-            this.setState({
-              isAdmin: false
-            })
-            
-            // return <Redirect to="/"/>
-          }
+            localStorage.setItem('isAdmin', true);
+
+          } 
           
         }
       }).catch(e => console.error(e))
   }
 
+  
 
-  createProduct(e, data) {
-    e.preventDefault();
-    fetch(`http://localhost:9999/shop/product/create/${localStorage.getItem("userId")}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
+  
+getAllProducts(){
+  fetch("http://localhost:9999/shop/products")
+  .then(res => res.json())
+  .then(data => {
+    if (data.errors) {
+      return console.error(data.message);
+    }
+    this.setState({
+      products: data.products
     })
-      .then(data => {
-        if (data.errors) {
-          console.error(data.errors);
-        } else {
-          console.log(data)
-          // console.log(`Product ${data.name}`)
-        
-          
-        }
-      }).catch(e => console.error(e))
-
-      // const request = async () => {
-      //   try{
-      //   const response = await fetch(`http://localhost:9999/shop/product/create/${localStorage.getItem('userId')}`, {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json"
-      //     },
-      //     body: JSON.stringify(data)
-      //   });
-      //   const json = await response.json();
-      //   console.log(json);
-      //   }
-      //   catch (error){
-      //       console.error(error);
-            
-      //   }
-      // }
-      // request();
+  }).catch(e => console.error(e))
 }
 
- 
- 
-  componentWillMount() {
+
+  componentDidMount() {
     this.setState({
       user: localStorage.getItem('username')
 
     })
-    fetch("http://localhost:9999/shop/products")
-      .then(res => res.json())
-      .then(data => {
-        if (data.errors) {
-          return console.error(data.message);
-        }
-        this.setState({
-          products: data.products
-        })
-      }).catch(e => console.error(e))
-    
-      
- 
+   this.getAllProducts()
+
+  }
+  componentDidUpdate(prevProps, prevState){
+    if(prevState == this.state){
+      this.getAllProducts()
+    }
   }
 
-      
-      
-      //   const request = async () => {
-      //     try{
-      //     const response = await fetch(`http://localhost:9999/cart/my/orders/${localStorage.getItem('userId')}`);
-      //     const json = await response.json();
-      //     console.log(json.orders);
-      //      this.setState({
-      //        orders: json.orders
-      //     })
-      //   console.log(this.state.orders)
-      //   }
-      //     catch (error){
-      //         console.error(error);
-              
-      //     }
-      
-      // }
-      
-      // request();
 
   setCreditentials(e) {
     let { name, value } = e.target;
@@ -160,23 +104,26 @@ class App extends Component {
   logout() {
     localStorage.clear();
     this.setState({
-      isLoggedIn: false,
       isAdmin: false,
       user: ""
     })
   }
 
+
+    
+
+
   render() {
     return (
       <div className="App">
-      {/* Когато името е повече от едно трябва да се показва само първото или първите 10 символа
-       */}
-        <Header  name={localStorage.getItem('name')}
-              userId={localStorage.getItem('userId')}
-            imageUrl={localStorage.getItem('imageUrl')} />
+
+        <Header name={localStorage.getItem('name')}
+          userId={localStorage.getItem('userId')}
+          imageUrl={localStorage.getItem('imageUrl')} />
         <Switch>
-          <Route path="/" exact component={Home}/>
-         
+          <Route path="/" exact render={() =>
+            <Home toShop={this.toShop} />} />
+
           <Route path="/register" render={(props) =>
             <Register
               {...props}
@@ -184,40 +131,39 @@ class App extends Component {
               onSubmit={this.onSubmit}
             />
           } />
-      {/* {
-        this.state.user ? <Redirect to="/"/>: null
-      } */}
           <Route path="/login" render={
             (props) =>
               <Login
                 {...props}
                 setCreditentials={this.setCreditentials}
-                onSubmit={this.onSubmit} />
-              } />
-     <Route path="/logout" render={() => {
+                onSubmit={this.onSubmit}
+                 />
+
+          } />
+          <Route path="/product/delete/:productId" component={Delete}/>
+
+          <Route path="/logout" render={() => {
             this.logout()
             return (
               <Redirect to="/" />
             )
           }} />
 
-          <Route path="/product/create/:userId" render={(props)=>
-          <CreateProduct {...props}
-          setCreditentials={this.setCreditentials}
-          createProduct = {this.createProduct.bind(this)}
-          
-          userId={localStorage.getItem("userId")}
-          />
-          }/>
-          
-          <Route path="/shop/products" render={(props)=>
-            <Shop {...props} products={this.state.products} createOrder={this.createOrder}
-             />
-          }/>
+          <Route path="/product/create/:userId" render={(props) =>
+            <CreateProduct {...props}
+              setCreditentials={this.setCreditentials}
+              userId={localStorage.getItem("userId")}
+            />
+          } />
 
-          <Route path="/shop/product/:productId" component={Details}/> 
-          <Route path="/my/orders/:userId" component={MyOrders}/>
-          <Route path="/my/products/:userId" component={UserProfile}/>
+          <Route path="/shop/products" render={(props) =>
+            <Shop {...props} products={this.state.products} createOrder={this.createOrder}
+            />
+          } />
+
+          <Route path="/shop/product/:productId" exact component={Details} />
+          <Route path="/my/orders/:userId" component={MyOrders} />
+          <Route path="/my/products/:userId" component={UserProfile} />
         </Switch>
       </div>
     );

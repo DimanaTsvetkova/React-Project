@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Redirect} from 'react-router';
 import './register.css';
 
 class Register extends Component {
@@ -13,6 +14,9 @@ class Register extends Component {
     this.setCreditentials = props.setCreditentials.bind(this);
   }
   render() {
+    if(localStorage.getItem('isLogged')){
+      return <Redirect to="/shop/products"/>
+    }
     return (
       <main className="cred-form">
       <div className="reg-form">

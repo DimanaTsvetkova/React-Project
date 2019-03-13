@@ -28,7 +28,12 @@ class  Shop extends React.Component{
                    <p>{product.details}</p>
                         }
                     <h5 className="pr-price">{product.price} $</h5>
-                    < Link to={"/shop/product/"+product._id} className="buy-btn">Buy</Link>
+                    {
+                        localStorage.getItem('isAdmin')?
+                        < Link to={"/product/delete/"+product._id} className="buy-btn">delete</Link>
+                            :                        
+                        < Link to={"/shop/product/"+product._id} className="buy-btn">Buy</Link>
+                    }
                     </section>
                 </div>
                 ))

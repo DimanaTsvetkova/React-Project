@@ -10,6 +10,7 @@ function NavBar(props){
         <nav>
 
           {props.userId ? 
+          localStorage.getItem('isAdmin')? null :
         <NavLink to={"/my/orders/"+props.userId} className="shopping-basket"><img  src={shoppingBasket} alt="Cart"/></NavLink>
         :
         null
@@ -18,23 +19,34 @@ function NavBar(props){
 
           <NavLink to="/" className="logo" >  <img src={logo} alt="HomeMade" /></NavLink>
             {
-              props.userId ? 
+             localStorage.getItem('isLogged') ?
           (<div>
-             
-                 <NavLink to="/shop/products" className="a">Shop</NavLink>
+            <NavLink to="/shop/products" className="a">Shop</NavLink>
+                {
+                  localStorage.getItem('isAdmin') ? null :
                  <NavLink className="a" to={'/product/create/'+localStorage.getItem('userId')}>Sell</NavLink>
+                }
           </div>
                 ) :(null)
             }
             { 
-              props.userId ? 
+             localStorage.getItem('isLogged') ? 
                   <div>
               <div className="user-nav-div">
+              {
+                localStorage.getItem('isAdmin')?
+              <div className="user-nav-span">
+                 <img className="user-nav-pic" src={props.imageUrl} alt="img"/>
+                     <span >{props.name}</span>
+                     </div>
+                     :
+            
                   <NavLink className="user-nav-span" to={"/my/products/"+localStorage.getItem("userId")}>
-                     <img className="user-nav" src={props.imageUrl} alt="img"/>
+                     <img className="user-nav-pic" src={props.imageUrl} alt="img"/>
                      <span >{props.name}</span>
                     
                      </NavLink>
+            }
                   </div>
                <NavLink className="a" to="/logout">Logout</NavLink>
                </div> : 

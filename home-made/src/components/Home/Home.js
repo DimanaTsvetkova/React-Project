@@ -2,12 +2,12 @@ import React from 'react';
 import './Home.css';
 import shoppingCart from '../../pics/shopping-cart.svg'
 
-function Home(){
-    return(
-        <React.Fragment>
+function Home(props){
+  return(
+  
         <main>
         <div className="pic">
-          <button className="start-shopping">
+          <button  className="start-shopping">
             <div>
               <p style={{color: 'black'}}> Fresh</p>
             </div>
@@ -17,7 +17,6 @@ function Home(){
         </div>
        
       </main>
-      </React.Fragment>
     )
 }
 export default Home

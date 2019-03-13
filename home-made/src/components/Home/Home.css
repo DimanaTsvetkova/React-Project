@@ -17,6 +17,7 @@ html, body {margin: 0; height: 100%; overflow: hidden}
     font-weight: bold;
     color: #ffffff;
     margin: 22em 9em;
+    text-decoration: none;
 }
 .start-shopping>div>p{
     font-size: 2em;

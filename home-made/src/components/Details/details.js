@@ -8,14 +8,18 @@ class Details extends React.Component{
             user:localStorage.getItem('userId'),
             productId: this.props.match.params.productId,
             orderStatus: "Order sent",
-            price:null,
-            quantity:null,
+            price:0,
+            quantity:0,
             product:{},
 
         }
         this.placeOrder= this.placeOrder.bind(this)
     }
 
+    
+    
+    
+    
     componentWillMount(){
         const request = async () => {
             try{
@@ -35,22 +39,6 @@ class Details extends React.Component{
         
         request();
     
-        // .then((res)=>{
-        //     res.json()
-        //     console.log(res)
-        //     fetch(res.url).then(res=>{
-        //         res.json()
-        //         console.log(res)
-        //     })
-        // })
-        // .then(data=>{
-        //     console.log(data)
-           
-        //     // this.setState({
-        //     //     
-        //     // })
-        // }).catch(error=> console.error(error));
-    
     }
 
     setPriceAndQuantity(e){
@@ -63,6 +51,7 @@ class Details extends React.Component{
            quantity:qty
        })
     }
+ 
 
     placeOrder(data){
         console.log(data)
@@ -77,14 +66,17 @@ class Details extends React.Component{
         }).then(data=>{
             console.log('Order created!');
             console.log(data)
+            this.props.history.push('/shop/products');
         }).catch(e=>{
             console.error(e);
         })
         
     }
     
+ 
     render(){
-        let {product} = this.state
+        let {product} = this.state;
+      
     return(
         <main className="shop-page">
         <div>   
@@ -96,7 +88,9 @@ class Details extends React.Component{
             
                     <h3>Final price: {this.state.price} $</h3>
                     <button className="order-btn" onClick={()=>this.placeOrder(this.state)}>Order</button>
+                 
             </div>
+          
                 <section className="details-section">
                      <h3>{product.name}</h3>
                 Details

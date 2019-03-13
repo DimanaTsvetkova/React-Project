@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link,Redirect } from 'react-router-dom'
 import './user-profile.css';
-
 class UserProfile extends React.Component {
   constructor(props) {
     super(props);
@@ -31,6 +30,7 @@ class UserProfile extends React.Component {
   render() {
     const { isLoaded, user } = this.state
     return (
+      localStorage.getItem('isAdmin') ? <Redirect to="/shop/products"/> :
       isLoaded ?
       <main className="user-background">
         <div className="user-creds">
@@ -41,6 +41,8 @@ class UserProfile extends React.Component {
           <h4>{user.username}</h4>
         </div>
 
+        {
+          user.products.length > 0 ?
         <div className="user-all">
           <section className="my-products-section">
             <h2>My products</h2>
@@ -53,7 +55,7 @@ class UserProfile extends React.Component {
                     </div>
                     <section className="order-details">
                       <h2>{product.name}</h2>
-                      <Link to={"/shop/product/" + product._id} className="buy-btn">Details</Link>
+                      <Link to={"/shop/product/" + product._id} className="det-btn">Details</Link>
                     </section>
                   </li>
                 )
@@ -94,7 +96,8 @@ class UserProfile extends React.Component {
           </section>
 
         </div>
-
+        : <h2 className="no-pr">You have no products put for sale yet!</h2>
+        }
 
       </main> 
       :

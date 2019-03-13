@@ -23,7 +23,9 @@ class MyOrders extends React.Component{
           })
         }
 
-
+        recieveOrder(){
+          
+        }
 
 
           render (){
@@ -35,23 +37,29 @@ class MyOrders extends React.Component{
         {
           
           isLoaded ?
+          orders.length>0?
           orders.map(order =>(
               <li className="my-orders-li" key={order._id}>
               <div className="li-img">
                 <img src={order.productId.imageUrl} alt="ok"/>
 
               </div>
-              <section className="order-details">
                 <h2>{order.productId.name}</h2>
-              <h4>Product details</h4>
-                <p>{order.productId.details}</p>
-                <span>Price:{order.price} $</span><br/>
-                <span>Current status: {order.orderStatus}</span>
-
+              <section className="order-details-shopping-basket">
+              <h4>Price:{order.price} $</h4>
+                <p>Quantity: {order.quantity}</p>
+                
               </section>
-              {/* <button className="recieve-btn">Recieved</button> */}
-              </li>
-          )) : (<h2>Loading...</h2>)
+                <div>
+               
+                <span>Order status: <br/>{order.orderStatus}</span>
+              <button className="recieve-btn">Recieved</button>
+                </div>
+              </li> 
+          )) 
+          : <h2 className="no-pr">Your basket is empty</h2>
+          
+          : (<h2>Loading...</h2>)
 
         }
         </ul>

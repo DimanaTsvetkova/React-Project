@@ -26,6 +26,7 @@
   filter: blur(15px);
 }
 form{
+  
   text-align: center;
   position: absolute;
   left: 50%;
@@ -60,6 +61,8 @@ form{
     cursor: pointer;
     transition: all 450ms ease-in-out;
     margin: 0 27%;
+  font-family: cursive;
+
   }
   .product-btn:hover{
     text-shadow: 5px 2px 9px #000000;
@@ -100,4 +103,8 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 #container > form > div > div:nth-child(2) > input[type="number"]:nth-child(3){
   margin: 3% 0;
+}
+.create-inp::placeholder{
+  color: #ffffff;
+  font-family: cursive;
 }

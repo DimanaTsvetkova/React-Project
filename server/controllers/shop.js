@@ -70,5 +70,40 @@ module.exports = {
       }
      
     });
+  },
+
+  getDeleteProduct: (req, res, next) => {
+    const id = req.params.productId;
+    console.log(id)
+    Product.findById(id)
+      .then((product) => {
+        res
+          .status(200)
+          .json({ message: 'Fetched delete page.', product })
+      })
+      .catch((error) => {
+        if (!error.statusCode) {
+          error.statusCode = 500;
+        }
+        next(error);
+      });
+  },
+
+  deleteProduct: (req, res) => {
+    const id = req.params.productId;
+    Product.findByIdAndDelete(id)
+      .then(
+        res.status(200)
+          .json({
+            message: "Product deleted!",
+            id
+          })
+      )
+      .catch((error) => {
+        if (!error.statusCode) {
+          error.statusCode = 500;
+        }
+
+      });
+    }
   }
-}
