@@ -9,7 +9,7 @@ function NavBar(props){
         <header>
         <nav>
 
-          {props.userId ? 
+          { localStorage.getItem('isLogged')  ? 
           localStorage.getItem('isAdmin')? null :
         <NavLink to={"/my/orders/"+props.userId} className="shopping-basket"><img  src={shoppingBasket} alt="Cart"/></NavLink>
         :
@@ -18,16 +18,18 @@ function NavBar(props){
 
 
           <NavLink to="/" className="logo" >  <img src={logo} alt="HomeMade" /></NavLink>
+          
             {
              localStorage.getItem('isLogged') ?
           (<div>
-            <NavLink to="/shop/products" className="a">Shop</NavLink>
+          <NavLink to="/shop/products" className="a">Shop</NavLink>
+                
                 {
                   localStorage.getItem('isAdmin') ? null :
                  <NavLink className="a" to={'/product/create/'+localStorage.getItem('userId')}>Sell</NavLink>
                 }
           </div>
-                ) :(null)
+                ) :(<div className="anon-div"><NavLink to="/shop/products" className="a">Shop</NavLink> </div>)
             }
             { 
              localStorage.getItem('isLogged') ? 

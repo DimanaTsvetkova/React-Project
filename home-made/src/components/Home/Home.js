@@ -1,19 +1,20 @@
 import React from 'react';
 import './Home.css';
-import shoppingCart from '../../pics/shopping-cart.svg'
+import {Link} from 'react-router-dom';
+import shoppingCart from '../../pics/shopping-cart.svg';
 
 function Home(props){
   return(
   
-        <main>
+        <main >
         <div className="pic">
-          <button  className="start-shopping">
+          <Link to="/shop/products" className="start-shopping">
             <div>
               <p style={{color: 'black'}}> Fresh</p>
             </div>
             <img src={shoppingCart} alt="shopping" className="shopping-cart" />
             <div> <p>Products </p></div>
-          </button>
+          </Link>
         </div>
        
       </main>

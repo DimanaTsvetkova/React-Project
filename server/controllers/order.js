@@ -13,14 +13,16 @@ module.exports = {
     .then(([order, user, product])=>{
       user.orders.push(order);
       product.orders.push(order);
+  
+      return Promise.all([User.findByIdAndUpdate(userId, user),
+              Product.findByIdAndUpdate(productId, product)])
+    }).then((res)=>{   
       res.status(200)
       .json({
         message: 'Order created successfully!',
         order
       })
-      return Promise.all([User.findByIdAndUpdate(userId, user),
-              Product.findByIdAndUpdate(productId, product)])
-    }).then(()=>{})
+    })
     .catch((error) => {
       if (!error.statusCode) {
         error.statusCode = 500;
@@ -42,7 +44,7 @@ module.exports = {
     .then((orders) => {
       res
         .status(200)
-        .json({ message: 'lalala', orders });
+        .json({ message: 'Orders fetched succesfully!', orders });
     })
     .catch((error) => {
       if (!error.statusCode) {
@@ -51,10 +53,10 @@ module.exports = {
      
     });
      
-   
-
-   
-  }
+    
+    
+  },
+ 
 }
 
 

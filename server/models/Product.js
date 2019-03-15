@@ -17,7 +17,6 @@ const productSchema = new Schema({
     type:{
         type:Schema.Types.String,
         required:true
-        // default?
     },
     details:{
         type:Schema.Types.String
@@ -27,7 +26,8 @@ const productSchema = new Schema({
         required:true
     },
     imageUrl:{
-        type:Schema.Types.String
+        type:Schema.Types.String,
+     defaul:'../pics/default-product-img.jpg'
     }
 })
 

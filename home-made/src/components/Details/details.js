@@ -1,4 +1,5 @@
 import React from 'react';
+import {toast} from 'react-toastify';
 import './details.css';
 
 class Details extends React.Component{
@@ -7,9 +8,8 @@ class Details extends React.Component{
         this.state={
             user:localStorage.getItem('userId'),
             productId: this.props.match.params.productId,
-            orderStatus: "Order sent",
             price:0,
-            quantity:0,
+            quantity:1,
             product:{},
 
         }
@@ -25,7 +25,6 @@ class Details extends React.Component{
             try{
             const response = await fetch(`http://localhost:9999/shop/product/${this.state.productId}`);
             const json = await response.json();
-            console.log(json.product);
             await this.setState({
                 product:json.product,
                 price:Number(json.product.price)
@@ -46,15 +45,17 @@ class Details extends React.Component{
        let finalPrice
        qty === 0 ? (  finalPrice = this.state.product.price):
        ( finalPrice = qty*this.state.price);
+
        this.setState({
            price:finalPrice,
            quantity:qty
        })
+
     }
  
 
     placeOrder(data){
-        console.log(data)
+   
         fetch('http://localhost:9999/cart/order/create',{
             method:'POST',
             headers:{
@@ -62,15 +63,15 @@ class Details extends React.Component{
             },
             body: JSON.stringify(data)
         }).then((res)=>{
-            res.json()
+             res.json()
         }).then(data=>{
-            console.log('Order created!');
             console.log(data)
-            this.props.history.push('/shop/products');
+            
         }).catch(e=>{
             console.error(e);
         })
-        
+        toast.success('Order created!');
+        this.props.history.push('/shop/products');
     }
     
  

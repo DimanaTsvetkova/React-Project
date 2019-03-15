@@ -84,7 +84,6 @@ class UserProfile extends React.Component {
                             <span>Quantity: {order.quantity}</span><br />
                           </div>
                           <div>
-                            <span>Current status: {order.orderStatus}</span> <br />
                           </div>
                       {/* <button>Send</button> */}
                         </section>

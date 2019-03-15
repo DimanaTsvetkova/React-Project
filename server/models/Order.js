@@ -7,22 +7,13 @@ const orderSchema = new Schema({
         required: true,
         ref:'User'
     },
-    // my orders/ recieved orders
-    // reciever:{
-    //     type:Schema.Types.ObjectId,
-    //     required: true
-
-    // },
+  
    productId:{
        type: Schema.Types.ObjectId,
        required:true,
        ref:'Product'
    },
-   orderStatus:{
-       type:Schema.Types.String,
-       default:"Order sent",
-       required:true
-   },
+
    quantity:{
        type:Schema.Types.Number,
        required:true

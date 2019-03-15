@@ -1,5 +1,6 @@
 import React from 'react';
 import './details.css';
+import {toast} from 'react-toastify';
 
 class Delete extends React.Component{
     constructor(props){
@@ -18,12 +19,10 @@ class Delete extends React.Component{
     }
 
     componentWillMount() {
-        console.log("here")
         const request=async () =>{
             try{
                 const response = await fetch('http://localhost:9999/shop/product/delete/' + this.props.match.params.productId);
                 const json = await response.json();
-                console.log(json);
                 await  this.setState({
                  id:this.props.match.params.productId,
                  name:json.product.name,
@@ -63,11 +62,12 @@ class Delete extends React.Component{
             body => {
               
               if (!body.errors) {
-                  console.log("post deleted")
+                  toast.success("Product deleted")
                 this.props.history.push('/shop/products')    
               }
               else {
                 console.log(body.message)
+                toast.error("Something went wrong");
               }
             }
           )

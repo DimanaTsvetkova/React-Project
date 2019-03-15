@@ -37,15 +37,16 @@ module.exports = {
     Promise.all([Product.create(productObj), User.findById(userId)])
     .then(([product, user])=>{
       user.products.push(product);
-
       res.status(200)
       .json({
         message: 'Product created successfully!',
-        product
+       
       })
+   
      
           return User.findByIdAndUpdate(userId, user);
-    }).then((res)=>{ console.log(res)
+    }).then((res)=>{   
+        
     }).catch(e => console.error(e));
   },
 
@@ -74,7 +75,7 @@ module.exports = {
 
   getDeleteProduct: (req, res, next) => {
     const id = req.params.productId;
-    console.log(id)
+    
     Product.findById(id)
       .then((product) => {
         res

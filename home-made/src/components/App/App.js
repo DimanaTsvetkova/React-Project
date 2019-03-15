@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import { ToastContainer, toast, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import Home from '../Home/Home'
 import Header from '../NavBar/NavBar';
@@ -11,7 +13,6 @@ import Details from '../Details/details';
 import MyOrders from '../my-orders/myOrders';
 import UserProfile from '../user-profile/UserProfile';
 import Delete from '../Details/delete';
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -26,8 +27,6 @@ class App extends Component {
 
   onSubmit(e, data, path) {
     e.preventDefault();
-    console.log(path)
-    console.log(data)
     const url = `http://localhost:9999/auth/${path}`;
     fetch(url, {
       method: "POST",
@@ -37,19 +36,18 @@ class App extends Component {
       body: JSON.stringify(data)
     }).then(res => res.json())
       .then(data => {
-        console.log(data)
-
         if (!data.userId) {
-          console.error("Wrong username or password");
+          toast.error("Wrong username or password");
         } else {
 
-          console.log(`Welcome ${data.name}`)
+          toast.success(`Welcome ${data.name}`);
           localStorage.setItem('imageUrl', data.imageUrl);
           localStorage.setItem('userId', data.userId);
           localStorage.setItem('name', data.name);
 
           this.setState({
             user: data.name,
+
           })
           localStorage.setItem('isLogged', true)
           if (data.name === "Admin") {
@@ -58,7 +56,7 @@ class App extends Component {
           } 
           
         }
-      }).catch(e => console.error(e))
+      }).catch(e => toast.error(e))
   }
 
   
@@ -80,14 +78,15 @@ getAllProducts(){
 
   componentDidMount() {
     this.setState({
-      user: localStorage.getItem('username')
+      user: localStorage.getItem('username'),
+      isLoading:true
 
     })
    this.getAllProducts()
 
   }
   componentDidUpdate(prevProps, prevState){
-    if(prevState == this.state){
+    if(prevState !== this.state){
       this.getAllProducts()
     }
   }
@@ -116,11 +115,16 @@ getAllProducts(){
   render() {
     return (
       <div className="App">
-
+        <ToastContainer closeButton={false} hideProgressBar={true} autoClose={2000} transition={Slide} />
+        
         <Header name={localStorage.getItem('name')}
           userId={localStorage.getItem('userId')}
-          imageUrl={localStorage.getItem('imageUrl')} />
-        <Switch>
+          imageUrl={localStorage.getItem('imageUrl')}
+          orders={this.state.orders}  />
+      
+
+        
+          <Switch>
           <Route path="/" exact render={() =>
             <Home toShop={this.toShop} />} />
 
@@ -136,7 +140,7 @@ getAllProducts(){
               <Login
                 {...props}
                 setCreditentials={this.setCreditentials}
-                onSubmit={this.onSubmit}
+              onSubmit={this.onSubmit} 
                  />
 
           } />
@@ -156,15 +160,20 @@ getAllProducts(){
             />
           } />
 
-          <Route path="/shop/products" render={(props) =>
+          <Route path="/shop/products" exact render={(props) =>
             <Shop {...props} products={this.state.products} createOrder={this.createOrder}
             />
           } />
 
+
           <Route path="/shop/product/:productId" exact component={Details} />
-          <Route path="/my/orders/:userId" component={MyOrders} />
+          {
+            <Route path="/my/orders/:userId" component={MyOrders} />
+
+          }
           <Route path="/my/products/:userId" component={UserProfile} />
         </Switch>
+       
       </div>
     );
   }

@@ -26,21 +26,19 @@
   
   }
   .order-btn{
-    position: absolute;
-       border: 0;
-       border-radius: 12px;
-       background:  #C0392B;;
-       color: white;
-       cursor: pointer;
-       transition: all 450ms ease-in-out;
-       margin: 0 27%;
-       font-size: 2em;
-       font-weight: bold;
-       padding: .5em;
-       text-shadow: 5px 2px 9px #000000;
+    border: 0;
+    width: 100%;
+    border-radius: 12px;
+    background: #C0392B;
+    color: white;
+    cursor: pointer;
+    transition: all 450ms ease-in-out;
+    font-size: 2em;
+    font-weight: bold;
+    padding: .5em;
+    text-shadow: 5px 2px 9px #000000;
     box-shadow: 19px 24px 57px 0px rgba(10,10,10,1);
-  
-  }
+}
   .order-btn:hover{
     box-shadow: none;
     text-shadow: none;

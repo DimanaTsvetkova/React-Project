@@ -6,11 +6,14 @@ import './shop.css';
 class  Shop extends React.Component{
   
     render(){
+      
     return(
         <main className="shop-page">
             <h2>Products</h2>
            
-            {
+           {
+                
+                this.props.products.length>0?
                 this.props.products.map(product=>(
                    <div className="product-box" key={product._id}>
                     <section>
@@ -27,16 +30,23 @@ class  Shop extends React.Component{
                    : 
                    <p>{product.details}</p>
                         }
-                    <h5 className="pr-price">{product.price} $</h5>
+                    <h5 className="pr-price">Price: {product.price} $</h5>
                     {
                         localStorage.getItem('isAdmin')?
-                        < Link to={"/product/delete/"+product._id} className="buy-btn">delete</Link>
-                            :                        
+                        < Link to={"/product/delete/"+product._id} className="buy-btn">Delete</Link>
+                            :    
+                            localStorage.getItem('isLogged')?                    
                         < Link to={"/shop/product/"+product._id} className="buy-btn">Buy</Link>
+                        :
+                        < Link to={"/login"} className="buy-btn">Buy</Link>
+
                     }
                     </section>
                 </div>
+                
                 ))
+                :
+               <h2 className="no-pr">There are no products currently for sale</h2>
             }
         </main>
     )

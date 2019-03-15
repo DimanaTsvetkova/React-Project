@@ -2,22 +2,27 @@
 html, body {margin: 0; height: 100%; overflow: hidden}
 
 .pic{
-    height: 100%;
+    height: 40em;
     background: url('../../pics/background.jpg');
     background-position: center;
     background-size: cover;
     
 }
+main{
+    height: 100%;
+}
 .start-shopping{
-    box-shadow: 10px 10px 177px 12px rgba(0,0,0,0.75);
-    padding: 1em;
-    border-radius: 26px;
-    border: 1px;
-    background: #60A865;
-    font-weight: bold;
-    color: #ffffff;
-    margin: 22em 9em;
-    text-decoration: none;
+        box-shadow: 10px 10px 177px 12px rgba(0,0,0,0.75);
+        padding: 1em;
+        border-radius: 26px;
+        border: 1px;
+        background: #60A865;
+        display: block;
+        position: fixed;
+        font-weight: bold;
+        color: #ffffff;
+        margin: 16em 9em;
+        text-decoration: none;
 }
 .start-shopping>div>p{
     font-size: 2em;
